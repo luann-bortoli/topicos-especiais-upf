@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');.contentContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 70px;
+    width: 100%;
+
+    background-color: #0F172A;
+
+    .contentWrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        height: 100%;
+        width: 1200px;
+
+        color: #0F172A;
+        font-family: Nunito;
+
+        .brandWrapper{
+            display: flex;
+            align-items: center;
+            color: #FFFFFF;
+
+            p{
+                font-size: 22px;
+                font-weight: 500;
+                margin: 0 0 0 16px;
+            }
+        }
+
+        .navWrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .navList{
+                display: flex;
+                gap: 48px;
+
+                a{
+                    
+                    li{
+                    display: flex;
+                    cursor: pointer;
+                    border-bottom: solid 1px transparent;
+                    color: #64748B;
+                    font-size: 14px;
+
+                    &:hover{
+                        border-bottom: solid 1px #FFFFFF;
+                        color: #FFFFFF;
+                    }
+                }
+                }
+            }
+        }
+
+        .actionsWrapper{
+            display: flex;
+            position: relative;
+            cursor: pointer;
+            color: #FFFFFF;
+
+            .logoutButton{
+                display: flex;
+                align-items: center;
+
+                position: absolute;
+                padding: 8px 12px;
+                background-color: white;
+                border-radius: 6px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                color: red;
+                font-size: 14px;
+                cursor: pointer;
+
+                svg{
+                    height: 14px;
+                    margin: 0 4px 0 0;
+                }
+            }
+        }
+    }
+}
