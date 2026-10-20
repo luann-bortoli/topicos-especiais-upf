@@ -1,80 +1,90 @@
+
 import { LogOut, Store, User } from 'lucide-react'
-import s from './Header.module.css'
+import { Link } from '@inertiajs/react'
 import { useState } from 'react'
 import axios from 'axios'
+import s from './Header.module.css'
 
-export default function Header(){
+interface NavItem {
+    label: string
+    href: string
+}
 
-    const navItems = 
-    [
+export default function Header() {
+    const navItems: NavItem[] = [
         {
-            label: "Dashboard",
-            href: "/dashboard"
+            label: 'Dashboard',
+            href: '/dashboard',
         },
         {
-            label: "Produtos",
-            href: "/products"
+            label: 'Produtos',
+            href: '/products',
         },
         {
-            label: "Categorias",
-            href: "/categories"
+            label: 'Categorias',
+            href: '/categories',
         },
         {
-            label: "Place",
-            href: "#"
+            label: 'Place',
+            href: '#',
         },
         {
-            label: "Holder",
-            href: "#"
-        }
+            label: 'Holder',
+            href: '#',
+        },
     ]
 
     const [showUserDetails, setShowUserDetails] = useState<boolean>(false)
 
-    const logout = () => {
-        axios.post("http://localhost:8000/logout")
+    const logout = async () => {
+        await axios.post('/logout')
+        window.location.href = '/login'
     }
 
-    return(
-        <>
-            <div className={s.contentContainer}>
-                <div className={s.contentWrapper}>
-                    <div className={s.brandWrapper}>
-                        <Store /> 
-                        <p>Mercadinho</p>
-                    </div>
+    return (
+        <header className={s.contentContainer}>
+            <div className={s.contentWrapper}>
+                <Link href="/" className={s.brandWrapper}>
+                    <Store />
+                    <p>Mercadinho</p>
+                </Link>
 
-                    <nav className={s.navWrapper}>
-                        <ul className={s.navList}>
-                            {navItems.map((item) => {
-                                return (
-                                    <a 
-                                        key={item.href}
-                                        href={item.href}
-                                        className={s.navItem}
-                                        >
-                                        <li >{item.label}</li>
-                                    </a>
-                                )
-                            })}
-                        </ul>
-                    </nav>
+                <nav className={s.navWrapper}>
+                    <ul className={s.navList}>
+                        {navItems.map((item) => (
+                            <li key={item.label}>
+                                <Link
+                                    href={item.href}
+                                    className={s.navItem}
+                                >
+                                    {item.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
 
-                    <div className={s.actionsWrapper}>
-                        <div
-                            onMouseEnter={() => setShowUserDetails(true)}
-                            onMouseLeave={() => setShowUserDetails(false)}
-                                className={s.userPicWrapper}>
-                            <User />
+                <div className={s.actionsWrapper}>
+                    <div
+                        onMouseEnter={() => setShowUserDetails(true)}
+                        onMouseLeave={() => setShowUserDetails(false)}
+                        className={s.userPicWrapper}
+                    >
+                        <User />
 
-                            {showUserDetails 
-                                && <button
-                                    onClick={() => logout()}
-                                className={s.logoutButton}><LogOut /> Sair</button>}
-                        </div>
+                        {showUserDetails && (
+                            <button
+                                type="button"
+                                onClick={logout}
+                                className={s.logoutButton}
+                            >
+                                <LogOut />
+                                Sair
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
-        </>
+        </header>
     )
 }

@@ -1,69 +1,63 @@
-import { CodeXml, LogOut, Store, User } from 'lucide-react'
+
+import { CodeXml, Store } from 'lucide-react'
+import { Link } from '@inertiajs/react'
 import s from './Footer.module.css'
-import { useState } from 'react'
-import axios from 'axios'
 
-export default function Footer(){
+interface NavItem {
+    label: string
+    href: string
+}
 
-    const navItems = 
-    [
+export default function Footer() {
+    const navItems: NavItem[] = [
         {
-            label: "Dashboard",
-            href: "/dashboard"
+            label: 'Dashboard',
+            href: '/dashboard',
         },
         {
-            label: "Produtos",
-            href: "/products"
+            label: 'Produtos',
+            href: '/products',
         },
         {
-            label: "Categorias",
-            href: "/categories"
+            label: 'Categorias',
+            href: '/categories',
         },
         {
-            label: "Place",
-            href: "#"
+            label: 'Place',
+            href: '#',
         },
         {
-            label: "Holder",
-            href: "#"
-        }
+            label: 'Holder',
+            href: '#',
+        },
     ]
 
-    const [showUserDetails, setShowUserDetails] = useState<boolean>(false)
+    return (
+        <footer className={s.contentContainer}>
+            <div className={s.contentWrapper}>
+                <Link href="/" className={s.brandWrapper}>
+                    <Store />
+                </Link>
 
-    const logout = () => {
-        axios.post("http://localhost:8000/logout")
-    }
+                <nav className={s.navWrapper}>
+                    <ul className={s.navList}>
+                        {navItems.map((item) => (
+                            <li key={item.label}>
+                                <Link
+                                    href={item.href}
+                                    className={s.navItem}
+                                >
+                                    {item.label}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
 
-    return(
-        <>
-            <div className={s.contentContainer}>
-                <div className={s.contentWrapper}>
-                    <div className={s.brandWrapper}>
-                        <Store /> 
-                    </div>
-
-                    <nav className={s.navWrapper}>
-                        <ul className={s.navList}>
-                            {navItems.map((item) => {
-                                return (
-                                    <a 
-                                        key={item.href}
-                                        href={item.href}
-                                        className={s.navItem}
-                                        >
-                                        <li >{item.label}</li>
-                                    </a>
-                                )
-                            })}
-                        </ul>
-                    </nav>
-
-                    <div className={s.actionsWrapper}>
-                        <CodeXml />
-                    </div>
+                <div className={s.actionsWrapper}>
+                    <CodeXml />
                 </div>
             </div>
-        </>
+        </footer>
     )
 }

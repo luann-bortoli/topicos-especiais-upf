@@ -1,86 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');.contentContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    height: 70px;
+.contentContainer {
     width: 100%;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    background-color: var(--card);
 
-    background-color: #0F172A;
+    .contentWrapper {
+        max-width: 1280px;
+        min-height: 100px;
+        margin: 0 auto;
+        padding: 24px 32px;
 
-    .contentWrapper{
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+    }
 
-        height: 100%;
-        width: 1200px;
+    .brandWrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
 
-        color: #0F172A;
-        font-family: Nunito;
+        color: var(--foreground);
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 700;
 
-        .brandWrapper{
-            display: flex;
-            align-items: center;
-            color: #FFFFFF;
-
-            p{
-                font-size: 22px;
-                font-weight: 500;
-                margin: 0 0 0 16px;
-            }
+        svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
         }
 
-        .navWrapper{
-            display: flex;
+        span {
+            margin: 0;
+        }
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .navWrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .navList {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .navItem {
+        display: block;
+        padding: 8px 12px;
+        border-radius: 8px;
+
+        color: var(--muted-foreground);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        white-space: nowrap;
+
+        transition:
+            color 0.2s ease,
+            background-color 0.2s ease;
+
+        &:hover {
+            color: var(--foreground);
+            background-color: var(--muted);
+        }
+    }
+
+    .actionsWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-shrink: 0;
+
+        color: var(--muted-foreground);
+        font-size: 12px;
+
+        svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary);
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .contentContainer {
+        .contentWrapper {
+            gap: 16px;
+            padding: 24px 20px;
+        }
+
+        .navList {
+            gap: 2px;
+        }
+
+        .navItem {
+            padding: 8px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media (max-width: 680px) {
+    .contentContainer {
+        .contentWrapper {
+            flex-direction: column;
             justify-content: center;
-            align-items: center;
-
-            .navList{
-                display: flex;
-                gap: 48px;
-
-                a{
-                    
-                    li{
-                    cursor: pointer;
-                    border-bottom: solid 1px transparent;
-                    color: #64748B;
-                    font-size: 12px;
-
-                    &:hover{
-                        border-bottom: solid 1px #FFFFFF;
-                        color: #FFFFFF;
-                    }
-                }
-                }
-            }
+            gap: 20px;
+            padding: 28px 20px;
         }
 
-        .actionsWrapper{
-            display: flex;
-            position: relative;
-            cursor: pointer;
-            color: #FFFFFF;
+        .navWrapper {
+            width: 100%;
+            justify-content: center;
+        }
 
-            .logoutButton{
-                display: flex;
-                align-items: center;
+        .navList {
+            justify-content: center;
+        }
 
-                position: absolute;
-                padding: 8px 12px;
-                background-color: white;
-                border-radius: 6px;
-                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-                color: red;
-                font-size: 14px;
-                cursor: pointer;
-
-                svg{
-                    height: 14px;
-                    margin: 0 4px 0 0;
-                }
-            }
+        .actionsWrapper {
+            justify-content: center;
         }
     }
 }
