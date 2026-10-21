@@ -1,0 +1,218 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    min-width: 0;
+    padding: 32px;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            margin-top: 6px;
+            color: var(--muted-foreground);
+            font-size: 14px;
+        }
+    }
+
+    .backButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--foreground);
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background 0.2s;
+
+        &:hover {
+            background: var(--muted);
+        }
+    }
+
+    .card {
+        width: 100%;
+        max-width: 1000px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--card);
+    }
+
+    .cardHeader {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 28px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .titleGroup {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        p {
+            color: var(--muted-foreground);
+            font-size: 14px;
+        }
+    }
+
+    .label {
+        color: var(--muted-foreground);
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .editButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 8px;
+        background: var(--primary);
+        color: var(--primary-foreground);
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        padding: 28px;
+    }
+
+    .descriptionSection {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+    }
+
+    .description {
+        color: var(--muted-foreground);
+        font-size: 14px;
+        line-height: 1.8;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+
+    .infoGrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .infoItem {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        min-width: 0;
+        padding: 20px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+
+        strong {
+            font-size: 15px;
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    .infoLabel {
+        color: var(--muted-foreground);
+        font-size: 13px;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 28px;
+        border-top: 1px solid var(--border);
+
+        span {
+            color: var(--muted-foreground);
+            font-size: 12px;
+        }
+    }
+
+    .backLink {
+        color: var(--primary);
+        font-size: 13px;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        gap: 20px;
+        padding: 20px 16px;
+
+        .header {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .cardHeader {
+            align-items: flex-start;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .infoGrid {
+            grid-template-columns: 1fr;
+        }
+
+        .footer {
+            align-items: flex-start;
+            flex-direction: column;
+            padding: 20px;
+        }
+    }
+}

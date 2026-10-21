@@ -1,4 +1,5 @@
-import { Link, router } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
+import styles from './index.module.css';
 
 interface Category {
     id: number;
@@ -8,76 +9,111 @@ interface Category {
 
 interface Props {
     categories: Category[];
-    flash?: {
-        success?: string;
-    };
 }
 
-export default function Index({ categories, flash }: Props) {
-    function destroy(id: number) {
-        if (confirm('Deseja realmente excluir esta categoria?')) {
-            router.delete(`/categories/${id}`);
-        }
-    }
-
+export default function Index({ categories }: Props) {
     return (
         <>
-            <h1>Categorias</h1>
+            <Head title="Categorias" />
 
-            {flash?.success && (
-                <p>{flash.success}</p>
-            )}
+            <main className={styles.container}>
+                <header className={styles.header}>
+                    <div>
+                        <h1>Categorias</h1>
+                        <p>Gerencie as categorias cadastradas.</p>
+                    </div>
 
-            <Link href="/categories/create">
-                Nova categoria
-            </Link>
+                    <Link
+                        href="/categories/create"
+                        className={styles.createButton}
+                    >
+                        Nova categoria
+                    </Link>
+                </header>
 
-            {categories.length > 0 ? (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>Descrição</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
+                <section className={styles.card}>
+                    <div className={styles.cardHeader}>
+                        <h2>Todas as categorias</h2>
 
-                    <tbody>
-                        {categories.map(category => (
-                            <tr key={category.id}>
-                                <td>{category.id}</td>
-                                <td>{category.name}</td>
-                                <td>
-                                    {category.description ?? 'Sem descrição'}
-                                </td>
-                                <td>
-                                    <Link href={`/categories/${category.id}`}>
-                                        Ver
-                                    </Link>
+                        <span className={styles.count}>
+                            {categories.length}{' '}
+                            {categories.length === 1
+                                ? 'categoria'
+                                : 'categorias'}
+                        </span>
+                    </div>
 
-                                    {' '}
+                    {categories.length > 0 ? (
+                        <div className={styles.tableWrapper}>
+                            <table className={styles.table}>
+                                <thead>
+                                    <tr>
+                                        <th>Categoria</th>
+                                        <th>Descrição</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
 
-                                    <Link href={`/categories/${category.id}/edit`}>
-                                        Editar
-                                    </Link>
+                                <tbody>
+                                    {categories.map((category) => (
+                                        <tr key={category.id}>
+                                            <td>
+                                                <div className={styles.categoryInfo}>
+                                                    <span className={styles.categoryName}>
+                                                        {category.name}
+                                                    </span>
+                                                    <span className={styles.categoryId}>
+                                                        ID: {category.id}
+                                                    </span>
+                                                </div>
+                                            </td>
 
-                                    {' '}
+                                            <td>
+                                                <span className={styles.description}>
+                                                    {category.description || 'Sem descrição'}
+                                                </span>
+                                            </td>
 
-                                    <button
-                                        type="button"
-                                        onClick={() => destroy(category.id)}
-                                    >
-                                        Excluir
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (
-                <p>Nenhuma categoria cadastrada.</p>
-            )}
+                                            <td>
+                                                <div className={styles.actions}>
+                                                    <Link
+                                                        href={`/categories/${category.id}`}
+                                                        className={styles.viewButton}
+                                                    >
+                                                        Ver
+                                                    </Link>
+
+                                                    <Link
+                                                        href={`/categories/${category.id}/edit`}
+                                                        className={styles.editButton}
+                                                    >
+                                                        Editar
+                                                    </Link>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ) : (
+                        <div className={styles.emptyState}>
+                            <h3>Nenhuma categoria cadastrada</h3>
+
+                            <p>
+                                Cadastre sua primeira categoria para começar.
+                            </p>
+
+                            <Link
+                                href="/categories/create"
+                                className={styles.createButton}
+                            >
+                                Cadastrar categoria
+                            </Link>
+                        </div>
+                    )}
+                </section>
+            </main>
         </>
     );
 }

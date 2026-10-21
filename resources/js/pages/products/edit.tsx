@@ -2,6 +2,7 @@
 import { Head, Link, useForm } from '@inertiajs/react';
 import type { FormEvent } from 'react';
 import styles from './edit.module.css';
+import { confirmDelete } from '@/lib/alerts';
 
 interface Category {
     id: number;
@@ -44,15 +45,15 @@ export default function Edit({ product, categories }: Props) {
         put(`/products/${product.id}`);
     }
 
-    function handleDelete() {
-        const confirmed = window.confirm(
-            `Tem certeza de que deseja excluir o produto "${product.name}"? Esta ação não pode ser desfeita.`,
-        );
+    async function handleDelete() {
+    const confirmed = await confirmDelete(
+        `o produto "${product.name}"`,
+    );
 
-        if (!confirmed) return;
+    if (!confirmed) return;
 
-        destroy(`/products/${product.id}`);
-    }
+    destroy(`/categories/${product.id}`);
+}
 
     return (
         <>
