@@ -26,12 +26,12 @@ interface Category {
     id: number;
     name: string;
     description?: string | null;
-    products_count?: number;
+    products_count: number;
 }
 
 interface Props {
-    products?: Product[];
-    categories?: Category[];
+    products: Product[];
+    categories: Category[];
 }
 
 const currencyFormatter = new Intl.NumberFormat('pt-BR', {
@@ -43,9 +43,6 @@ export default function Welcome({
     products = [],
     categories = [],
 }: Props) {
-    const featuredProducts = products.slice(0, 3);
-    const popularCategories = categories.slice(0, 3);
-
     return (
         <>
             <Head title="Início" />
@@ -53,6 +50,7 @@ export default function Welcome({
             <Header />
 
             <main className={s.mainContainer}>
+                {/* Produtos em destaque */}
                 <section className={s.section}>
                     <div className={s.sectionHeader}>
                         <div>
@@ -78,9 +76,9 @@ export default function Welcome({
                         </Link>
                     </div>
 
-                    {featuredProducts.length > 0 ? (
+                    {products.length > 0 ? (
                         <div className={s.featuredGrid}>
-                            {featuredProducts.map((product) => (
+                            {products.map((product) => (
                                 <article
                                     key={product.id}
                                     className={s.featuredCard}
@@ -159,6 +157,7 @@ export default function Welcome({
 
                 <hr className={s.divider} />
 
+                {/* Categorias em destaque */}
                 <section className={s.section}>
                     <div className={s.sectionHeader}>
                         <div>
@@ -184,9 +183,9 @@ export default function Welcome({
                         </Link>
                     </div>
 
-                    {popularCategories.length > 0 ? (
+                    {categories.length > 0 ? (
                         <div className={s.featuredGrid}>
-                            {popularCategories.map((category) => (
+                            {categories.map((category) => (
                                 <article
                                     key={category.id}
                                     className={s.featuredCard}
@@ -226,14 +225,12 @@ export default function Welcome({
                                                 'Explore os produtos disponíveis nesta categoria.'}
                                         </p>
 
-                                        {category.products_count !== undefined && (
-                                            <span className={s.productCount}>
-                                                {category.products_count}{' '}
-                                                {category.products_count === 1
-                                                    ? 'produto'
-                                                    : 'produtos'}
-                                            </span>
-                                        )}
+                                        <span className={s.productCount}>
+                                            {category.products_count}{' '}
+                                            {category.products_count === 1
+                                                ? 'produto'
+                                                : 'produtos'}
+                                        </span>
                                     </div>
 
                                     <div className={s.cardFooter}>

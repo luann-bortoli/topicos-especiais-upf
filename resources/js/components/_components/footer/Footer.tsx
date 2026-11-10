@@ -21,15 +21,7 @@ export default function Footer() {
         {
             label: 'Categorias',
             href: '/categories',
-        },
-        {
-            label: 'Place',
-            href: '#',
-        },
-        {
-            label: 'Holder',
-            href: '#',
-        },
+        }
     ]
 
     return (

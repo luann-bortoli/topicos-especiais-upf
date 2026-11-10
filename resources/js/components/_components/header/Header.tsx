@@ -23,15 +23,7 @@ export default function Header() {
         {
             label: 'Categorias',
             href: '/categories',
-        },
-        {
-            label: 'Place',
-            href: '#',
-        },
-        {
-            label: 'Holder',
-            href: '#',
-        },
+        }
     ]
 
     const [showUserDetails, setShowUserDetails] = useState<boolean>(false)
